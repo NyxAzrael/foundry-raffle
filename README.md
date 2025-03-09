@@ -1,73 +1,113 @@
-## Foundry
+```markdown
+# Foundry Raffle Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A Solidity smart contract project for a decentralized raffle system using Foundry and Chainlink VRF.
 
-Foundry consists of:
+## Features
+- Raffle ticket purchase with ETH
+- Chainlink VRF for verifiable randomness
+- Automated winner selection
+- Multi-network deployment support
+- Comprehensive test coverage
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 🚀 Getting Started
 
-## Documentation
+### Prerequisites
+- [Foundry](https://getfoundry.sh) (version ≥ 0.2.0)
+- Node.js (version ≥ 16.x)
+- Git
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/foundry-raffle.git
+cd foundry-raffle
 ```
 
-### Test
-
-```shell
-$ forge test
+2. Install dependencies:
+```bash
+make install
 ```
 
-### Format
+## 🔧 Configuration
 
-```shell
-$ forge fmt
+1. Copy environment template:
+```bash
+cp .env.example .env
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
+2. Edit `.env` with your credentials:
+```ini
+SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your-key
+PRIVATE_KEY=0xyour-private-key
+ETHERSCAN_API_KEY=your-etherscan-key
 ```
 
-### Anvil
+## 📜 Available Commands
 
-```shell
-$ anvil
+| Command                | Description                                  |
+|------------------------|----------------------------------------------|
+| `make all`             | Clean, install deps, and build              |
+| `make test`            | Run all tests                                |
+| `make deploy`          | Deploy to specified network                  |
+| `make anvil`           | Start local Anvil node                       |
+| `make format`          | Format Solidity code                         |
+| `make clean`           | Clean build artifacts                        |
+| `make snapshot`        | Create test coverage snapshot                |
+
+## 🌐 Deployment
+
+### Local Development
+1. Start Anvil node:
+```bash
+make anvil
 ```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+2. Deploy locally:
+```bash
+make deploy
 ```
 
-### Cast
-
-```shell
-$ cast <subcommand>
+### Sepolia Testnet
+```bash
+make deploy ARGS="--network sepolia"
 ```
 
-### Help
+## 🔗 Chainlink VRF Setup
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+1. Create subscription:
+```bash
+make createSubscription ARGS="--network sepolia"
 ```
 
-## Test !!!
-1. Write Deploy Scripts
-2. Write Test
-    - local chain
-    - forked test chain
-    - forked main chain
+2. Add contract as consumer:
+```bash
+make addConsumer ARGS="--network sepolia"
+```
+
+3. Fund subscription:
+```bash
+make fundSubscription ARGS="--network sepolia"
+```
+
+## 🧪 Testing
+Run comprehensive test suite:
+```bash
+make test
+```
+
+Generate test coverage report:
+```bash
+make snapshot
+```
+
+## ⚠️ Important Notes
+1. Always keep your `.env` file private
+2. Ensure VRF subscription has sufficient LINK balance
+3. Mainnet deployments require contract verification
+4. Recommended gas limit for VRF: 2500000 wei
+
+## 📄 License
+MIT License - see [LICENSE](LICENSE) for details
+```
+
