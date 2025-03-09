@@ -1,4 +1,3 @@
-```markdown
 # Foundry Raffle Project
 
 A Solidity smart contract project for a decentralized raffle system using Foundry and Chainlink VRF.
